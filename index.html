@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Golden Centro de Beleza | Estética em Imbituba, SC</title>
+<!-- PROTÓTIPO: aprovação do prospecto não autorizou publicar. Remover noindex só com autorização. -->
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.jotform.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://lh3.googleusercontent.com https://www.jotform.com https://cdn.jotfor.ms; connect-src https://api.jotform.com https://cdn.jotfor.ms; frame-src https://www.google.com; object-src 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="Golden Centro de Beleza: estética em Imbituba, SC. R. Otacílio de Carvalho, 105, Centro, 2º piso.">
+<meta name="theme-color" content="#462506">
+<!-- PENDENTE: canonical, og:url e og:image (sem domínio nem imagem adequada ainda) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Golden Centro de Beleza">
+<meta property="og:title" content="Golden Centro de Beleza | Estética em Imbituba, SC">
+<meta property="og:description" content="Golden Centro de Beleza: estética em Imbituba, SC. R. Otacílio de Carvalho, 105, Centro, 2º piso.">
+<link rel="icon" type="image/png" href="imagens/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Josefin+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Identidade da marca */
+  --dourado:      #DDC358; /* dourado (extraído do avatar, confiança média) */
+  --dourado-luz:    #EBD98A; /* derivada: só hover; validar */
+  --marrom:        #462506; /* marrom escuro (extraído do avatar) */
+  --creme:         #F5F0E6; /* creme SUGERIDO, validar com a Golden */
+  --creme-suave:   rgba(245,240,230,.78);
+  --linha:          rgba(221,195,88,.35);
+
+  --serif:  'Italiana', 'Times New Roman', serif;
+  --sans:   'Josefin Sans', system-ui, sans-serif;
+
+  --nav-h: 76px;
+
+  /* Método de áreas úteis */
+  --content-max-width: 360px;
+  --layout-gap: 16px;
+  --radius-ui: 4px; /* arredondamento leve de botões e caixas */
+  --side: 2rem; /* margem mínima lateral */
+  --gutter: max(var(--side), calc((100vw - var(--content-max-width)) / 2));
+}
+@media (min-width: 521px)  { :root { --content-max-width: 480px; } }
+@media (min-width: 641px)  { :root { --content-max-width: 600px; } }
+@media (min-width: 768px)  { :root { --content-max-width: 728px; } }
+@media (min-width: 881px)  { :root { --content-max-width: 780px; } }
+@media (min-width: 1025px) { :root { --content-max-width: 924px; } }
+@media (min-width: 1201px) { :root { --content-max-width: 1100px; --layout-gap: 32px; } }
+@media (min-width: 1367px) { :root { --content-max-width: 1280px; --layout-gap: 32px; } }
+
+html { scroll-behavior: smooth; }
+body { background: var(--marrom); color: var(--creme); font-family: var(--sans); font-weight: 400; font-synthesis: none; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--dourado); outline-offset: 3px; }
+
+/* ── NAV ── */
+.nav {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 30;
+  height: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) var(--gutter) 0;
+  background: rgba(70,37,6,.55);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(245,240,230,.1);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display: flex; align-items: center; gap: .9rem; flex-shrink: 0; }
+.brand img { width: 46px; height: 46px; border-radius: 50%; display: block; background: var(--dourado); }
+.brand-text { display: flex; flex-direction: column; line-height: 1; white-space: nowrap; }
+.brand-name { font-family: var(--serif); font-weight: 400; font-size: 24px; letter-spacing: .06em; }
+.brand-sub { font-size: 10.5px; letter-spacing: .3em; margin-top: 5px; color: var(--dourado); font-weight: 400; }
+
+.nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
+.nav-links a { white-space: nowrap; font-size: 14px; font-weight: 400; letter-spacing: .04em; padding: .4rem 0; position: relative; color: var(--creme); }
+.nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background: var(--dourado); transition: width .25s; }
+.nav-links a:hover::after, .nav-links a.on::after { width: 100%; }
+.nav-links a.on { color: var(--dourado); }
+.nav-links a.nav-book { background: var(--dourado); border: 1px solid var(--dourado); border-radius: var(--radius-ui); padding: .7rem 1.3rem; font-weight: 500; color: var(--marrom); transition: background .25s, border-color .25s, color .25s; }
+.nav-links a.nav-book::after { display: none; }
+.nav-links a.nav-book:hover { background: var(--dourado-luz); border-color: var(--dourado-luz); color: var(--marrom); }
+
+.burger { display: none; background: none; border: 0; cursor: pointer; padding: 10px; margin-right: -10px; }
+.burger span { display: block; width: 24px; height: 1.5px; background: var(--creme); margin: 5px 0; transition: transform .3s, opacity .3s; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── HERO ── */
+.hero {
+  position: relative; isolation: isolate;
+  overflow: hidden;
+}
+
+.hero-copy { width: 100%; }
+
+.kicker {
+  font-family: var(--sans); font-size: clamp(12px, 1.2vw, 14px); font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--dourado);
+}
+
+.title {
+  font-family: var(--serif); font-weight: 400;
+  letter-spacing: .005em;
+  text-wrap: balance;
+}
+
+/* dois botões sempre do mesmo tamanho: lado a lado no desktop, empilhados até 767px */
+.actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 232px), 1fr)); gap: 1rem; width: min(100%, 580px); } /* 2 botões lado a lado só se couberem sem quebrar o texto */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .65rem;
+  min-height: 52px; padding: 0 1.9rem;
+  font-family: var(--sans); font-size: 15px; font-weight: 500; letter-spacing: .03em;
+  border: 1px solid var(--dourado); border-radius: var(--radius-ui); cursor: pointer;
+  transition: background .25s, color .25s, border-color .25s;
+}
+.btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+.btn-main { background: var(--dourado); border-color: var(--dourado); color: var(--marrom); }
+.btn-main:hover { background: var(--dourado-luz); border-color: var(--dourado-luz); color: var(--marrom); }
+.btn-line { background: rgba(70,37,6,.35); color: var(--creme); }
+.btn-line:hover { background: var(--creme); border-color: var(--creme); color: var(--marrom); }
+
+/* ── FAQ ── */
+.faq { background: var(--creme); color: var(--marrom); border-top: 1px solid var(--linha); padding: clamp(3.5rem, 6vw, 5.5rem) var(--gutter); }
+.faq-title {
+  font-family: var(--serif); font-weight: 400; text-align: center;
+  font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; letter-spacing: .01em;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.faq-list { max-width: 760px; margin: 0 auto; border-top: 1px solid rgba(70,37,6,.15); }
+.faq-item { border-bottom: 1px solid rgba(70,37,6,.15); }
+.faq-item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 56px; padding: 1.1rem 0; cursor: pointer; list-style: none;
+  font-family: var(--sans); font-size: clamp(17px, 1.8vw, 20px); font-weight: 500; line-height: 1.3;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: ''; flex-shrink: 0; width: 10px; height: 10px; margin-right: .3rem;
+  border-right: 2px solid var(--dourado); border-bottom: 2px solid var(--dourado);
+  transform: rotate(45deg); transition: transform .25s;
+}
+.faq-item[open]:not([data-state="closing"]) summary::after { transform: rotate(-135deg); }
+.faq-item summary:focus-visible { outline: 2px solid var(--dourado); outline-offset: 2px; }
+.faq-item p { padding: 0 2rem 1.4rem 0; font-size: 15px; line-height: 1.7; color: rgba(70,37,6,.78); }
+.faq-item p a { color: var(--marrom); font-weight: 400; text-decoration: underline; text-decoration-color: var(--dourado); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+/* ── RODAPÉ ── */
+.footer { background: #2b1704; color: var(--creme); }
+.footer-grid { padding: clamp(3rem, 5vw, 4.5rem) var(--gutter) clamp(2.5rem, 4vw, 3.5rem); display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.4fr 1.1fr; gap: 2.5rem var(--layout-gap); }
+.footer-brand .brand { margin-bottom: 1.1rem; }
+.footer-desc { font-size: 15px; line-height: 1.7; color: var(--creme-suave); max-width: 30ch; margin-bottom: 1.4rem; }
+.socials { display: flex; gap: .6rem; }
+.socials a { width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--linha); border-radius: 50%; transition: background .25s, border-color .25s; }
+.socials a:hover svg { stroke: var(--marrom); }
+.socials a:hover { background: var(--dourado); border-color: var(--dourado); }
+.socials svg { width: 17px; height: 17px; fill: none; stroke: var(--creme); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.footer-h { font-family: var(--serif); font-weight: 400; font-size: 24px; letter-spacing: .02em; color: var(--dourado); margin-bottom: 1.1rem; }
+.footer-list { list-style: none; display: flex; flex-direction: column; gap: .7rem; font-size: 14px; color: var(--creme-suave); }
+.footer-list a:hover { color: var(--dourado); }
+.footer-list .lab { display: block; font-size: 13px; color: rgba(245,240,230,.5); margin-bottom: .1rem; }
+.footer-cta p { font-size: 15px; line-height: 1.7; color: var(--creme-suave); margin-bottom: 1.1rem; }
+.footer-cta .btn { width: 100%; min-height: 46px; padding: 0 .75rem; font-size: 15px; }
+.footer-cta .btn-main:hover { color: var(--marrom); }
+
+.footer-bar { border-top: 1px solid rgba(245,240,230,.1); }
+.footer-bar-inner { padding: 1.3rem var(--gutter); padding-bottom: calc(1.3rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; font-size: 13px; color: rgba(245,240,230,.6); }
+.footer-bar a { color: var(--dourado); }
+.footer-bar a:hover { color: var(--creme); }
+
+/* ── MOBILE / TABLET ── */
+@media (max-width: 767px)  { .actions { grid-template-columns: minmax(0, 1fr); width: 100%; } }
+/* 768 a 1200 px: marca + agendamento lado a lado (3+3), depois três colunas iguais (2+2+2) */
+@media (max-width: 1200px) {
+  .footer-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .footer-brand { grid-column: span 3; order: 1; }
+  .footer-cta   { grid-column: span 3; order: 2; }
+  .footer-links, .footer-services, .footer-contact { grid-column: span 2; order: 3; }
+  .footer-desc { max-width: 46ch; }
+}
+/* até 767 px: duas colunas; marca, contato e agendamento ocupam a linha toda */
+@media (max-width: 767px) {
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-grid > * { order: 0; text-align: center; }
+  .footer-brand, .footer-contact, .footer-cta { grid-column: 1 / -1; }
+  .footer-links, .footer-services { grid-column: auto; }
+  /* empilhado: tudo centralizado */
+  .footer-brand .brand { justify-content: center; }
+  .footer-desc { margin-inline: auto; }
+  .socials { justify-content: center; }
+  .footer-list { align-items: center; }
+  .footer-cta .btn { display: flex; max-width: 360px; margin-inline: auto; }
+  .footer-bar-inner { justify-content: center; text-align: center; }
+}
+@media (max-width: 1024px) {
+  .nav-links {
+    position: fixed; top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); left: 0; right: 0;
+    flex-direction: column; align-items: flex-start; gap: 0;
+    background: var(--marrom); padding: .5rem var(--gutter) 1.5rem;
+    border-bottom: 1px solid var(--linha);
+    transform: translateY(-12px); opacity: 0; visibility: hidden;
+    transition: opacity .25s, transform .25s, visibility .25s;
+  }
+  .nav-links.open { opacity: 1; transform: none; visibility: visible; }
+  .nav-links li { width: 100%; border-bottom: 1px solid rgba(245,240,230,.08); }
+  .nav-links a { display: block; padding: 1rem 0; font-size: 16px; }
+  .nav-links li:last-child { border-bottom: 0; padding-top: 1rem; }
+  .nav-links a.nav-book { text-align: center; padding: .95rem 1rem; }
+  .burger { display: block; }
+}
+@media (max-width: 640px) {
+  :root { --nav-h: 68px; }
+  .brand-name { font-size: 21px; }
+  .brand img { width: 40px; height: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ── FUNDAÇÃO: fundo do hero sem foto + blocos provisórios ── */
+.hero { background: radial-gradient(ellipse at 80% 15%, rgba(221,195,88,.14), transparent 60%), var(--marrom); }
+.stub { padding: 5rem var(--gutter); border-top: 1px solid var(--linha); }
+.stub h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4vw, 44px); color: var(--dourado); margin-bottom: .6rem; }
+.stub p { color: var(--creme-suave); max-width: 60ch; }
+
+/* ── PASSO 2: hero em duas colunas, fechada por uma curva ── */
+:root { --curve: clamp(56px, 8vw, 110px); } /* altura da curva que fecha a hero */
+/* conteúdo centralizado na área livre entre o menu e a curva: mesmo respiro em cima e embaixo */
+.hero { display: flex; align-items: center; min-height: min(100svh, 900px); padding: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 2.5rem) var(--gutter) calc(var(--curve) + 2.5rem); }
+/* a curva agora é o topo da seção de áreas (.areas::before), com o mesmo degradê, sem emenda */
+.hero-inner { width: 100%; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: var(--layout-gap) 4rem; align-items: center; }
+.hero-copy { max-width: 620px; }
+.title { font-size: clamp(38px, 4.8vw, 62px); line-height: 1.06; }
+.hero .kicker { margin-bottom: 1.5rem; }
+.title em { font-style: normal; color: var(--dourado); }
+.lead { margin: 1.6rem 0 2.5rem; max-width: 46ch; font-size: clamp(16px, 1.5vw, 18px); line-height: 1.7; color: var(--creme-suave); }
+/* vídeo de fundo: fica atrás do conteúdo e sobre o degradê marrom, com baixa opacidade */
+.hero-video { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; opacity: .25; pointer-events: none; }
+.hero-visual { position: relative; justify-self: end; width: 100%; max-width: 400px; aspect-ratio: 4 / 5; overflow: hidden;
+  border: 1px solid var(--linha); border-radius: 999px 999px 18px 18px;
+  background: linear-gradient(160deg, rgba(221,195,88,.22), rgba(221,195,88,.04) 65%); display: flex; align-items: center; justify-content: center; }
+.hero-visual::before { content: ''; position: absolute; z-index: 2; pointer-events: none; inset: 14px; border: 1px solid var(--linha); border-radius: 999px 999px 10px 10px; }
+.hero-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
+
+.light { background: var(--creme); color: var(--marrom); }
+.qicon { width: 46px; height: 46px; border-radius: 50%; background: var(--dourado); display: inline-flex; align-items: center; justify-content: center; }
+.qicon svg { width: 22px; height: 22px; fill: none; stroke: var(--marrom); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.qicon svg.fill { fill: var(--marrom); stroke: none; }
+.stub.light { border-top: 0; }
+.stub.light h2 { color: var(--marrom); }
+.stub.light p { color: rgba(70,37,6,.8); }
+.stub .stub-link { max-width: none; width: 100%; margin: 1.2rem 0 0; display: flex; justify-content: center; }
+#avaliacoes h2 { text-align: center; margin-bottom: 1.6rem; }
+/* Avaliações (widget Jotform): o comentário aberto no "Read more" vem sem fundo e a página aparecia por trás do texto.
+   As classes são do próprio widget; !important porque o widget injeta o CSS dele depois do nosso. */
+div.jf-google-reviews-read-more-modal { background: rgba(28,14,3,.8) !important; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+div.jf-google-reviews-read-more-modal--container { background: var(--creme) !important; border: 1px solid var(--dourado) !important; border-radius: 14px !important; box-shadow: 0 24px 60px rgba(0,0,0,.45) !important; }
+div.jf-google-reviews-read-more-modal--container, div.jf-google-reviews-read-more-modal--container :where(div, p, span, strong, h3, h4) { color: var(--marrom) !important; }
+div.jf-google-reviews-read-more-modal--container button.jf-google-reviews-dismiss { background: var(--dourado) !important; color: var(--marrom) !important; border: 0 !important; }
+div.jf-google-reviews-read-more-modal--container p.jf-google-reviews-read-more-modal--text { line-height: 1.6 !important; }
+div.jf-google-reviews-read-more-modal--container p.jf-reviews-review-date { opacity: .7; }
+@media (min-width: 901px) and (max-height: 700px) {
+  .hero { padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 1.5rem); padding-bottom: calc(var(--curve) + 1.5rem); }
+  .title { font-size: clamp(34px, 4.2vw, 54px); }
+  .lead { margin: 1rem 0 1.5rem; }
+  .hero-visual { max-width: 320px; }
+}
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: minmax(0, 1fr); }
+  .hero-visual { display: none; }
+  .hero { min-height: min(100svh, 680px); } /* sem a foto, a hero não precisa ocupar a tela toda */
+  /* sem a foto, o texto fica centralizado e simétrico */
+  .hero-copy { margin-inline: auto; text-align: center; }
+  .lead { margin-inline: auto; }
+  .actions { margin-inline: auto; }
+}
+
+/* ── PASSO 3 (v4): áreas de atendimento, cards que viram (foto na frente, detalhes no verso) ── */
+.areas { position: relative; isolation: isolate; overflow-x: clip; padding: clamp(2.5rem, 4.5vw, 3.5rem) var(--gutter); background: transparent; }
+/* um único fundo para a curva e para a seção: o degradê começa no topo do arco e continua sem corte */
+.areas::before {
+  content: ''; position: absolute; z-index: -1;
+  left: -5%; width: 110%; top: calc(-1 * var(--curve)); bottom: 0;
+  border-radius: 50% 50% 0 0 / var(--curve) var(--curve) 0 0;
+  background: radial-gradient(ellipse at 15% 0%, rgba(221,195,88,.16), transparent 55%), linear-gradient(180deg, var(--creme) 0%, #EFE7D6 100%);
+}
+.areas-head { text-align: center; max-width: 60ch; margin: 0 auto clamp(1.2rem, 2.5vw, 1.6rem); }
+.areas-title { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; text-wrap: balance; }
+.areas-carousel { position: relative; }
+.areas-arrow { display: none; }
+.areas-grid { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--layout-gap); }
+.areas-grid > li { min-width: 0; }
+
+.acard { position: relative; width: 100%; height: 240px; perspective: 1000px; }
+.acard-in { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.3,.7,.2,1); }
+.acard.on .acard-in { transform: rotateY(180deg); }
+.acard-face { position: absolute; inset: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--dourado); backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 14px 36px rgba(43,23,4,.16); }
+
+.acard-front { display: block; width: 100%; padding: 0; cursor: pointer; text-align: left; font: inherit; color: var(--creme); background: radial-gradient(ellipse at 70% 20%, rgba(221,195,88,.3), transparent 60%), linear-gradient(170deg, #5a3210, #2b1704); }
+.acard-front img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: sepia(.25) saturate(.92); transition: transform .6s ease; }
+.acard-front:hover img { transform: scale(1.04); }
+.acard-ov { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(43,23,4,.92) 0%, rgba(43,23,4,.35) 45%, rgba(43,23,4,0) 70%); }
+.acard-num { position: absolute; top: 12px; left: 16px; font-size: 13px; font-weight: 500; letter-spacing: .2em; color: var(--dourado); }
+.acard-txt { position: absolute; left: 16px; right: 16px; bottom: 14px; }
+.acard-nome { display: block; font-family: var(--serif); font-style: normal; font-weight: 400; font-size: 32px; line-height: 1; overflow-wrap: break-word; }
+.acard-hint { display: flex; align-items: center; gap: 8px; margin-top: 9px; font-size: 12px; letter-spacing: .06em; color: var(--dourado); }
+.acard-hint::before { content: ''; width: 22px; height: 1px; background: var(--dourado); }
+
+.acard-back { transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: flex-end; gap: 7px; padding: 14px 16px; background: var(--creme); color: var(--marrom); cursor: pointer; }
+.acard-big { position: absolute; top: -6px; right: 52px; font-family: var(--serif); font-weight: 400; font-size: 92px; line-height: 1; color: rgba(221,195,88,.35); pointer-events: none; }
+.acard-back h3 { position: relative; font-family: var(--serif); font-style: normal; font-weight: 400; font-size: 29px; line-height: 1.1; }
+.acard-back p { position: relative; margin-bottom: 3px; font-size: 13px; line-height: 1.4; color: rgba(70,37,6,.88); }
+.acard-btns { position: relative; display: flex; gap: 8px; }
+.acard-btns a { flex: 1; display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 0 .4rem; border: 1px solid var(--dourado); border-radius: var(--radius-ui); font-size: 13px; font-weight: 500; text-align: center; transition: background .25s; cursor: pointer; }
+.acard-btns .b-line { color: var(--marrom); }
+.acard-btns .b-line:hover { background: rgba(221,195,88,.28); }
+.acard-btns .b-fill { background: var(--marrom); border-color: var(--marrom); color: var(--dourado); }
+.acard-btns .b-fill:hover { background: #5a3210; }
+.acard-close { position: absolute; top: 10px; right: 10px; z-index: 2; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--dourado); background: transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: background .25s; }
+.acard-close:hover { background: rgba(221,195,88,.28); }
+.acard-close svg { width: 14px; height: 14px; fill: none; stroke: var(--marrom); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+@keyframes acard-shake { 0%,100% { transform: rotate(0); } 15% { transform: rotate(-3deg) translateX(-3px); } 30% { transform: rotate(3deg) translateX(3px); } 45% { transform: rotate(-2deg) translateX(-2px); } 60% { transform: rotate(2deg) translateX(2px); } 80% { transform: rotate(-1deg); } }
+.acard.shake { animation: acard-shake .7s ease-in-out 1; }
+@media (prefers-reduced-motion: reduce) { .acard.shake { animation: none; } .acard-in { transition: none; } }
+
+@media (max-width: 1024px) { .areas-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* mobile: carrossel horizontal com setas */
+@media (max-width: 767px) {
+  .areas-grid { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    margin-inline: calc(-1 * var(--gutter)); padding: .5rem var(--gutter) 1.4rem; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
+  .areas-grid::-webkit-scrollbar { display: none; }
+  .areas-grid > li { flex: 0 0 80%; max-width: 320px; scroll-snap-align: start; }
+  .acard { height: 230px; }
+  .acard-nome { font-size: clamp(24px, 7.2vw, 28px); }
+  .acard-back h3 { font-size: clamp(24px, 7vw, 29px); }
+    .areas-arrow { display: inline-flex; align-items: center; justify-content: center; position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer; background: var(--dourado); box-shadow: 0 6px 16px rgba(43,23,4,.25); transition: background .25s, opacity .25s; }
+  .areas-arrow:hover:not(:disabled) { background: var(--dourado-luz); }
+  .areas-arrow:disabled { opacity: 0; pointer-events: none; }
+  .areas-arrow svg { width: 18px; height: 18px; fill: none; stroke: var(--marrom); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .areas-arrow.prev { left: calc(-1 * var(--gutter) + 6px); }
+  .areas-arrow.next { right: calc(-1 * var(--gutter) + 6px); }
+}
+
+/* ── ONDE ESTAMOS: mapa à esquerda, informações à direita ── */
+.onde { padding: clamp(2.5rem, 4.5vw, 3.5rem) var(--gutter); background: radial-gradient(ellipse at 85% 0%, rgba(221,195,88,.16), transparent 55%), linear-gradient(180deg, #EFE7D6 0%, var(--creme) 100%); }
+.onde-title { text-align: center; font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; margin-bottom: clamp(1.2rem, 2.5vw, 1.6rem); text-wrap: balance; }
+.onde-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--layout-gap); align-items: stretch; }
+.onde-map { position: relative; min-height: 380px; border-radius: 14px; overflow: hidden; border: 1px solid var(--dourado); box-shadow: 0 14px 36px rgba(43,23,4,.16); background: #E6DCC6; }
+.onde-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+.onde-card { display: flex; flex-direction: column; justify-content: center; gap: 1.1rem; padding: 1.6rem 1.5rem;
+  background: rgba(251,248,242,.74); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border: 1px solid rgba(221,195,88,.55); border-radius: 12px; box-shadow: 0 14px 40px rgba(43,23,4,.12); color: var(--marrom); }
+.onde-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+.onde-list li { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .55rem; min-width: 0; padding: 1rem 1rem 1.1rem; background: rgba(239,231,214,.7); border: 1px solid rgba(221,195,88,.5); border-radius: 10px; }
+.onde-list .qicon { width: 36px; height: 36px; flex-shrink: 0; }
+.onde-list .qicon svg { width: 18px; height: 18px; }
+.onde-list li > div { min-width: 0; }
+.onde-lab { display: block; font-family: var(--serif); font-weight: 400; font-size: 23px; line-height: 1.1; }
+.onde-txt { display: block; margin-top: .25rem; overflow-wrap: break-word; font-size: 14px; line-height: 1.55; color: rgba(70,37,6,.88); }
+.onde-txt a { overflow-wrap: anywhere; text-decoration: underline; text-decoration-color: var(--dourado); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.onde-btns { display: flex; gap: .7rem; flex-wrap: wrap; }
+.onde-btns .btn { flex: 1 1 160px; min-height: 46px; padding: 0 1rem; }
+.btn-line-dark { background: transparent; color: var(--marrom); }
+.btn-line-dark:hover { background: rgba(221,195,88,.28); border-color: var(--dourado); color: var(--marrom); }
+@media (max-width: 1200px) {
+  .onde-grid { grid-template-columns: minmax(0, 1fr); }
+  .onde-map { min-height: 320px; }
+}
+@media (max-width: 767px) {
+  .onde-map { min-height: 280px; }
+  .onde-list li { padding: 1rem; }
+}
+@media (max-width: 520px) { .onde-list { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#inicio" aria-label="Golden Centro de Beleza, início">
+    <img src="imagens/avatar-instagram.png" width="150" height="150" alt="">
+    <span class="brand-text"><span class="brand-name">GOLDEN</span><span class="brand-sub">CENTRO DE BELEZA</span></span>
+  </a>
+  <ul class="nav-links" id="menu">
+    <li><a href="#inicio" class="on">Início</a></li>
+    <li><a href="#areas">Áreas de atendimento</a></li>
+    <li><a href="#avaliacoes">Avaliações</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a class="nav-book" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20a%20Golden." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+</header>
+<main>
+<section class="hero" id="inicio" aria-label="Apresentação">
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback>
+    <source src="videos/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="kicker">Golden Centro de Beleza</p>
+      <!-- COPY a aprovar. Alternativas: "Clínica de estética em Imbituba" | "Estética facial, corporal e capilar, no Centro de Imbituba" -->
+      <h1 class="title">Estética facial, corporal e capilar em <em>Imbituba</em></h1>
+      <p class="lead">Conheça as áreas de atendimento da Golden e fale com a equipe pelo WhatsApp para tirar suas dúvidas.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20a%20Golden." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.78a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88M20.46 3.49A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg> Falar no WhatsApp</a>
+        <a class="btn btn-line" href="#areas">Ver áreas de atendimento</a>
+      </div>
+    </div>
+    <!-- FOTO: trocar o miolo por <img src="..." alt="..."> com foto AUTORIZADA (equipe/ambiente). Sem foto adequada, fica o arco decorativo. -->
+    <div class="hero-visual"><img src="imagens/hero.png" width="1080" height="1350" alt="Proprietária da Golden Centro de Beleza" fetchpriority="high" decoding="async" onerror="this.style.display='none'"></div>
+  </div>
+</section>
+<!-- PASSO 3: áreas de atendimento (só categorias confirmadas) -->
+<section class="areas light" id="areas" aria-labelledby="areas-titulo">
+  <div class="areas-head">
+    <h2 class="areas-title" id="areas-titulo">Áreas de atendimento</h2>
+  </div>
+  <!-- FOTOS: Unsplash (licença gratuita, uso comercial permitido, sem atribuição obrigatória). Provisórias: trocar por fotos próprias da Golden quando houver. Ilustrativas, nunca apresentar como foto da clínica ou resultado. -->
+  <div class="areas-carousel">
+  <button type="button" class="areas-arrow prev" aria-label="Ver área anterior" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <ul class="areas-grid" id="areas-grid">
+    <li><div class="acard">
+      <div class="acard-in">
+        <button type="button" class="acard-face acard-front" aria-label="Facial: ver detalhes">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=75" width="900" height="720" alt="" onerror="this.style.display='none'">
+          <span class="acard-ov"></span><span class="acard-num">01</span>
+          <span class="acard-txt"><span class="acard-nome">Facial</span><span class="acard-hint">Toque para virar</span></span>
+        </button>
+        <div class="acard-face acard-back" inert>
+          <span class="acard-big" aria-hidden="true">01</span>
+          <button type="button" class="acard-close" aria-label="Voltar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <h3>Facial</h3>
+          <p>Cuidados para o rosto. Converse com a equipe e conheça as opções.</p>
+          <div class="acard-btns">
+            <a class="b-line" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%3A%20Facial." target="_blank" rel="noopener noreferrer">Saiba mais</a>
+            <a class="b-fill" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20atendimento%3A%20Facial." target="_blank" rel="noopener noreferrer">Agendar agora</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="acard">
+      <div class="acard-in">
+        <button type="button" class="acard-face acard-front" aria-label="Corporal: ver detalhes">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1741522509438-a120c0bb5e88?auto=format&fit=crop&w=900&q=75" width="900" height="720" alt="" onerror="this.style.display='none'">
+          <span class="acard-ov"></span><span class="acard-num">02</span>
+          <span class="acard-txt"><span class="acard-nome">Corporal</span><span class="acard-hint">Toque para virar</span></span>
+        </button>
+        <div class="acard-face acard-back" inert>
+          <span class="acard-big" aria-hidden="true">02</span>
+          <button type="button" class="acard-close" aria-label="Voltar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <h3>Corporal</h3>
+          <p>Atendimento corporal. Converse com a equipe e conheça as opções.</p>
+          <div class="acard-btns">
+            <a class="b-line" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%3A%20Corporal." target="_blank" rel="noopener noreferrer">Saiba mais</a>
+            <a class="b-fill" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20atendimento%3A%20Corporal." target="_blank" rel="noopener noreferrer">Agendar agora</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="acard">
+      <div class="acard-in">
+        <button type="button" class="acard-face acard-front" aria-label="Emagrecimento: ver detalhes">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1591384640699-9a85bd036da2?auto=format&fit=crop&w=900&q=75" width="900" height="720" alt="" onerror="this.style.display='none'">
+          <span class="acard-ov"></span><span class="acard-num">03</span>
+          <span class="acard-txt"><span class="acard-nome">Emagrecimento</span><span class="acard-hint">Toque para virar</span></span>
+        </button>
+        <div class="acard-face acard-back" inert>
+          <span class="acard-big" aria-hidden="true">03</span>
+          <button type="button" class="acard-close" aria-label="Voltar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <h3>Emagrecimento</h3>
+          <p>Atendimento voltado ao emagrecimento. Converse com a equipe para saber como funciona.</p>
+          <div class="acard-btns">
+            <a class="b-line" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%3A%20Emagrecimento." target="_blank" rel="noopener noreferrer">Saiba mais</a>
+            <a class="b-fill" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20atendimento%3A%20Emagrecimento." target="_blank" rel="noopener noreferrer">Agendar agora</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="acard">
+      <div class="acard-in">
+        <button type="button" class="acard-face acard-front" aria-label="Capilar: ver detalhes">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=900&q=75" width="900" height="720" alt="" onerror="this.style.display='none'">
+          <span class="acard-ov"></span><span class="acard-num">04</span>
+          <span class="acard-txt"><span class="acard-nome">Capilar</span><span class="acard-hint">Toque para virar</span></span>
+        </button>
+        <div class="acard-face acard-back" inert>
+          <span class="acard-big" aria-hidden="true">04</span>
+          <button type="button" class="acard-close" aria-label="Voltar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <h3>Capilar</h3>
+          <p>Atendimento capilar. Converse com a equipe e conheça as opções.</p>
+          <div class="acard-btns">
+            <a class="b-line" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%3A%20Capilar." target="_blank" rel="noopener noreferrer">Saiba mais</a>
+            <a class="b-fill" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20atendimento%3A%20Capilar." target="_blank" rel="noopener noreferrer">Agendar agora</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="acard">
+      <div class="acard-in">
+        <button type="button" class="acard-face acard-front" aria-label="Massagem: ver detalhes">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=900&q=75" width="900" height="720" alt="" onerror="this.style.display='none'">
+          <span class="acard-ov"></span><span class="acard-num">05</span>
+          <span class="acard-txt"><span class="acard-nome">Massagem</span><span class="acard-hint">Toque para virar</span></span>
+        </button>
+        <div class="acard-face acard-back" inert>
+          <span class="acard-big" aria-hidden="true">05</span>
+          <button type="button" class="acard-close" aria-label="Voltar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <h3>Massagem</h3>
+          <p>Atendimento de massagem. Converse com a equipe e conheça as opções.</p>
+          <div class="acard-btns">
+            <a class="b-line" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%3A%20Massagem." target="_blank" rel="noopener noreferrer">Saiba mais</a>
+            <a class="b-fill" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20atendimento%3A%20Massagem." target="_blank" rel="noopener noreferrer">Agendar agora</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="acard">
+      <div class="acard-in">
+        <button type="button" class="acard-face acard-front" aria-label="Laser: ver detalhes">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1700760933574-9f0f4ea9aa3b?auto=format&fit=crop&w=900&q=75" width="900" height="720" alt="" onerror="this.style.display='none'">
+          <span class="acard-ov"></span><span class="acard-num">06</span>
+          <span class="acard-txt"><span class="acard-nome">Laser</span><span class="acard-hint">Toque para virar</span></span>
+        </button>
+        <div class="acard-face acard-back" inert>
+          <span class="acard-big" aria-hidden="true">06</span>
+          <button type="button" class="acard-close" aria-label="Voltar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <h3>Laser</h3>
+          <p>Atendimento com laser. Converse com a equipe para saber o que está disponível.</p>
+          <div class="acard-btns">
+            <a class="b-line" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%3A%20Laser." target="_blank" rel="noopener noreferrer">Saiba mais</a>
+            <a class="b-fill" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20atendimento%3A%20Laser." target="_blank" rel="noopener noreferrer">Agendar agora</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+  </ul>
+  <button type="button" class="areas-arrow next" aria-label="Ver próxima área"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+</section>
+<!-- AVALIAÇÕES: widget Jotform (CSS do widget pendente de classes reais) -->
+<section class="stub" id="avaliacoes"><h2>Feedbacks</h2>
+  <div id="JFWebsiteWidget-01a12cfc3a90700086372370ea0341020891"></div>
+  <script src="https://www.jotform.com/website-widgets/embed/01a12cfc3a90700086372370ea0341020891" defer></script>
+  <p class="stub-link"><a class="btn btn-line" href="https://maps.app.goo.gl/bvaGKMWX31D2i9Kp9" target="_blank" rel="noopener noreferrer">Ver todas as avaliações</a></p>
+</section>
+<!-- ONDE ESTAMOS -->
+<section class="onde light" id="onde-estamos" aria-labelledby="onde-titulo">
+  <h2 class="onde-title" id="onde-titulo">Onde estamos</h2>
+  <div class="onde-grid">
+    <div class="onde-map"><iframe title="Mapa com a localização da Golden Centro de Beleza" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=R.+Ot%C3%A1cilio+de+Carvalho%2C+105%2C+Centro%2C+Imbituba+-+SC&amp;output=embed"></iframe></div>
+    <div class="onde-card">
+      <ul class="onde-list">
+        <li><span class="qicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><span class="onde-lab">Endereço</span><span class="onde-txt">R. Otacílio de Carvalho, 105, Centro, 2º piso.<br>Imbituba/SC.</span></div></li>
+        <li><span class="qicon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><span class="onde-lab">Horário</span><span class="onde-txt">Terça a sexta, das 10h às 20h.<br>Fechado de sábado a segunda.</span></div></li>
+        <li><span class="qicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg></span><div><span class="onde-lab">WhatsApp</span><span class="onde-txt"><a href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20a%20Golden." target="_blank" rel="noopener noreferrer">(48) 9203-9597</a></span></div></li>
+        <li><span class="qicon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".8" fill="currentColor" stroke="none"/></svg></span><div><span class="onde-lab">Instagram</span><span class="onde-txt"><a href="https://www.instagram.com/goldencentrodebeleza/" target="_blank" rel="noopener noreferrer">@goldencentrodebeleza</a></span></div></li>
+      </ul>
+      <div class="onde-btns">
+        <a class="btn btn-main" href="https://www.google.com/maps/dir/?api=1&amp;destination=R.+Ot%C3%A1cilio+de+Carvalho%2C+105%2C+Centro%2C+Imbituba+-+SC" target="_blank" rel="noopener noreferrer">Como chegar</a>
+        <a class="btn btn-line-dark" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20a%20Golden." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERGUNTAS FREQUENTES (rascunho: respostas 2 e 3 são texto geral, validar com a Golden) -->
+<section class="faq" id="perguntas" aria-labelledby="faq-titulo">
+  <h2 class="faq-title" id="faq-titulo">Perguntas frequentes</h2>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Quais tratamentos de estética a Golden oferece?</summary>
+      <p>Hoje a Golden atende seis áreas: facial, corporal, emagrecimento, capilar, massagem e laser. Dê uma olhada nas <a href="#areas">áreas de atendimento</a> e, se quiser saber mais sobre alguma delas, é só chamar a equipe no WhatsApp.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Quantas sessões vou precisar?</summary>
+      <p>Depende do seu objetivo e da área tratada, então não existe um número igual para todo mundo. A equipe explica como funciona e orienta o que faz sentido para você.</p>
+    </details>
+    <details class="faq-item">
+      <summary>O tratamento a laser dói?</summary>
+      <p>A sensação varia de pessoa para pessoa e conforme a região tratada. Antes de começar, a equipe explica como é o procedimento, e você pode tirar suas dúvidas pelo WhatsApp.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Onde fica e qual o horário de atendimento?</summary>
+      <p>A Golden fica na R. Otacílio de Carvalho, 105, Centro, 2º piso, em Imbituba/SC. Atendemos de terça a sexta, das 10h às 20h, e fechamos de sábado a segunda. Veja o mapa em <a href="#onde-estamos">Onde estamos</a>.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Como faço para agendar?</summary>
+      <p>Pelo WhatsApp, no <a href="https://wa.me/554892039597" target="_blank" rel="noopener noreferrer">(48) 9203-9597</a>. É só tocar em “Agendar agora” na área que você quer, e a conversa já abre com a mensagem pronta.</p>
+    </details>
+  </div>
+</section>
+</main>
+<!-- RODAPÉ -->
+<footer class="footer" id="contato">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#inicio" aria-label="Golden Centro de Beleza, voltar ao início">
+        <img src="imagens/avatar-instagram.png" width="150" height="150" alt="">
+        <span class="brand-text"><span class="brand-name">GOLDEN</span><span class="brand-sub">CENTRO DE BELEZA</span></span>
+      </a>
+      <p class="footer-desc">Estética facial, corporal e capilar em Imbituba.</p>
+      <div class="socials">
+        <a href="https://www.instagram.com/goldencentrodebeleza/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".8" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20a%20Golden." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg></a>
+      </div>
+    </div>
+
+    <nav class="footer-links" aria-label="Links rápidos">
+      <h2 class="footer-h">Links rápidos</h2>
+      <ul class="footer-list">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#areas">Áreas de atendimento</a></li>
+        <li><a href="#avaliacoes">Avaliações</a></li>
+        <li><a href="#perguntas">Perguntas frequentes</a></li>
+        <li><a href="#onde-estamos">Onde estamos</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-services" aria-label="Áreas de atendimento">
+      <h2 class="footer-h">Áreas</h2>
+      <ul class="footer-list">
+        <li><a href="#areas">Facial</a></li>
+        <li><a href="#areas">Corporal</a></li>
+        <li><a href="#areas">Emagrecimento</a></li>
+        <li><a href="#areas">Capilar</a></li>
+        <li><a href="#areas">Massagem</a></li>
+        <li><a href="#areas">Laser</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-contact">
+      <h2 class="footer-h">Contato</h2>
+      <ul class="footer-list">
+        <li><span class="lab">WhatsApp</span><a href="https://wa.me/554892039597" target="_blank" rel="noopener noreferrer">(48) 9203-9597</a></li>
+        <li><span class="lab">Instagram</span><a href="https://www.instagram.com/goldencentrodebeleza/" target="_blank" rel="noopener noreferrer">@goldencentrodebeleza</a></li>
+        <li><span class="lab">Endereço</span><a href="https://www.google.com/maps/search/Golden+Centro+de+Beleza+Imbituba+SC" target="_blank" rel="noopener noreferrer">R. Otacílio de Carvalho, 105<br>Centro, 2º piso, Imbituba/SC</a></li>
+        <li><span class="lab">Horário</span>Terça a sexta, 10h às 20h<br>Sábado a segunda fechado</li>
+      </ul>
+    </div>
+
+    <div class="footer-cta">
+      <h2 class="footer-h">Agende seu horário</h2>
+      <p>Fale com a equipe pelo WhatsApp e tire suas dúvidas.</p>
+      <a class="btn btn-main" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20atendimento." target="_blank" rel="noopener noreferrer">Agendar pelo WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="footer-bar-inner">
+      <span>© 2026 Golden Centro de Beleza</span>
+      <span>Website desenvolvido por <a href="https://amplifying.com.br/servicos" target="_blank" rel="noopener noreferrer">AMPLIFYING</a></span>
+    </div>
+  </div>
+</footer>
+<script>
+// ── MENU MOBILE ──
+(function () {
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu');
+  function setOpen(open) {
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.classList.toggle('open', open);
+  }
+  burger.addEventListener('click', function () { setOpen(burger.getAttribute('aria-expanded') !== 'true'); });
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  document.addEventListener('click', function (e) {
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)) setOpen(false);
+  });
+})();
+
+// ── CARROSSEL DAS ÁREAS (setas) ──
+(function () {
+  var grid = document.getElementById('areas-grid');
+  if (!grid) return;
+  var prev = document.querySelector('.areas-arrow.prev');
+  var next = document.querySelector('.areas-arrow.next');
+  function step() { var li = grid.querySelector('li'); return li ? li.getBoundingClientRect().width + 14 : 280; }
+  function update() {
+    prev.disabled = grid.scrollLeft <= 4;
+    next.disabled = grid.scrollLeft >= grid.scrollWidth - grid.clientWidth - 4;
+  }
+  prev.addEventListener('click', function () { grid.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  next.addEventListener('click', function () { grid.scrollBy({ left: step(), behavior: 'smooth' }); });
+  grid.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// ── CARDS QUE VIRAM ──
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.acard'));
+  if (!cards.length) return;
+  var touched = false;
+  function setOn(c, on, quiet) {
+    var front = c.querySelector('.acard-front'), back = c.querySelector('.acard-back');
+    c.classList.toggle('on', on);
+    front.inert = on; back.inert = !on;
+    if (!quiet) setTimeout(function () { (on ? back.querySelector('.b-line') : front).focus({ preventScroll: true }); }, 60);
+  }
+  cards.forEach(function (c) {
+    c.querySelector('.acard-front').addEventListener('click', function () {
+      touched = true; c.classList.remove('shake');
+      cards.forEach(function (o) { if (o !== c && o.classList.contains('on')) setOn(o, false, true); }); // só um card virado por vez
+      setOn(c, true);
+    });
+    c.querySelector('.acard-close').addEventListener('click', function (e) { e.stopPropagation(); setOn(c, false); });
+    c.querySelector('.acard-back').addEventListener('click', function (e) { if (!e.target.closest('a, button')) setOn(c, false); });
+    c.addEventListener('keydown', function (e) { if (e.key === 'Escape' && c.classList.contains('on')) setOn(c, false); });
+  });
+  var first = cards[0];
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting) {
+        io.disconnect();
+        setTimeout(function () { if (!touched) { first.classList.add('shake'); setTimeout(function () { first.classList.remove('shake'); }, 800); } }, 700);
+      }
+    }, { threshold: 0.5 });
+    io.observe(first);
+  }
+})();
+
+// ── FAQ (abre e fecha suave; sem animação se o usuário reduziu movimento) ──
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll('.faq-item').forEach(function (d) {
+    var s = d.querySelector('summary');
+    var c = d.querySelector('p');
+    if (!s || !c || !c.animate) return;
+    s.addEventListener('click', function (e) {
+      if (reduce.matches) return;
+      e.preventDefault();
+      var closing = d.open && d.dataset.state !== 'closing';
+      if (d._a) d._a.cancel();
+      c.style.overflow = 'hidden';
+      var pb = getComputedStyle(c).paddingBottom;
+      var h, a;
+      if (closing) {
+        d.dataset.state = 'closing';
+        h = c.offsetHeight;
+        a = c.animate(
+          [{ height: h + 'px', paddingBottom: pb, opacity: 1 }, { height: '0px', paddingBottom: '0px', opacity: 0 }],
+          { duration: 240, easing: 'ease' }
+        );
+        a.onfinish = function () { d.open = false; done(); };
+      } else {
+        d.open = true;
+        d.dataset.state = 'opening';
+        h = c.offsetHeight;
+        a = c.animate(
+          [{ height: '0px', paddingBottom: '0px', opacity: 0 }, { height: h + 'px', paddingBottom: pb, opacity: 1 }],
+          { duration: 300, easing: 'ease' }
+        );
+        a.onfinish = done;
+      }
+      d._a = a;
+      function done() { c.style.overflow = ''; d.dataset.state = ''; d._a = null; }
+    });
+  });
+})();
+
+// ── VÍDEO DA HERO (sem animação se o usuário reduziu movimento; pausa fora da tela) ──
+(function () {
+  var v = document.querySelector('.hero-video');
+  if (!v) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { v.remove(); return; }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else { v.pause(); }
+    }, { threshold: 0 }).observe(v);
+  }
+})();
+
+// ── AVALIAÇÕES: traduz o "Read more" do widget do Jotform (o texto vem do script deles) ──
+(function () {
+  var box = document.getElementById('avaliacoes');
+  if (!box) return;
+  var RE = /^(\s*(?:\.{3}|…)?\s*)Read more(\s*)$/i;
+  var busy = false;
+  function fix() {
+    var w = document.createTreeWalker(box, NodeFilter.SHOW_TEXT), n, m;
+    while ((n = w.nextNode())) {
+      m = RE.exec(n.nodeValue);
+      if (m) n.nodeValue = m[1] + 'Leia mais' + m[2];
+    }
+    box.querySelectorAll('[aria-label="Read more"],[title="Read more"]').forEach(function (e) {
+      if (e.getAttribute('aria-label') === 'Read more') e.setAttribute('aria-label', 'Leia mais');
+      if (e.getAttribute('title') === 'Read more') e.setAttribute('title', 'Leia mais');
+    });
+  }
+  new MutationObserver(function () {
+    if (busy) return;
+    busy = true;
+    requestAnimationFrame(function () { fix(); busy = false; });
+  }).observe(box, { childList: true, subtree: true, characterData: true });
+  fix();
+})();
+</script>
+</body>
+</html>
