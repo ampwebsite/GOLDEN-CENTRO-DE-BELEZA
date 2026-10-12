@@ -150,7 +150,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── RODAPÉ ── */
 .footer { background: #2b1704; color: var(--creme); }
-.footer-grid { padding: clamp(3rem, 5vw, 4.5rem) var(--gutter) clamp(2.5rem, 4vw, 3.5rem); display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.4fr 1.1fr; gap: 2.5rem var(--layout-gap); }
+.footer-grid { padding: clamp(3rem, 5vw, 4.5rem) var(--gutter) clamp(2.5rem, 4vw, 3.5rem); display: grid; grid-template-columns: 1.4fr .9fr .9fr 1.3fr 1.3fr; gap: 2.5rem var(--layout-gap); }
 .footer-brand .brand { margin-bottom: 1.1rem; }
 .footer-desc { font-size: 15px; line-height: 1.7; color: var(--creme-suave); max-width: 30ch; margin-bottom: 1.4rem; }
 .socials { display: flex; gap: .6rem; }
@@ -164,7 +164,7 @@ a { color: inherit; text-decoration: none; }
 .footer-list a:hover { color: var(--dourado); }
 .footer-list .lab { display: block; font-size: 13px; color: rgba(245,240,230,.5); margin-bottom: .1rem; }
 .footer-cta p { font-size: 15px; line-height: 1.7; color: var(--creme-suave); margin-bottom: 1.1rem; }
-.footer-cta .btn { width: 100%; min-height: 46px; padding: 0 .75rem; font-size: 15px; }
+.footer-cta .btn { width: 100%; min-height: 46px; padding: 0 .75rem; font-size: 15px; white-space: nowrap; }
 .footer-cta .btn-main:hover { color: var(--marrom); }
 
 .footer-bar { border-top: 1px solid rgba(245,240,230,.1); }
@@ -196,6 +196,7 @@ a { color: inherit; text-decoration: none; }
   .footer-cta .btn { display: flex; max-width: 360px; margin-inline: auto; }
   .footer-bar-inner { justify-content: center; text-align: center; }
 }
+@media (max-width: 400px) { .footer-h { font-size: 20px; } } /* 2 colunas bem estreitas: título em uma linha */
 @media (max-width: 1024px) {
   .nav-links {
     position: fixed; top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); left: 0; right: 0;
@@ -222,7 +223,7 @@ a { color: inherit; text-decoration: none; }
   html { scroll-behavior: auto; }
 }
 
-/* ── FUNDAÇÃO: fundo do hero sem foto + blocos provisórios ── */
+/* ── FUNDAÇÃO: fundo da hero e bloco das avaliações ── */
 .hero { background: radial-gradient(ellipse at 80% 15%, rgba(221,195,88,.14), transparent 60%), var(--marrom); }
 .stub { padding: 5rem var(--gutter); border-top: 1px solid var(--linha); }
 .stub h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4vw, 44px); color: var(--dourado); margin-bottom: .6rem; }
@@ -247,13 +248,9 @@ a { color: inherit; text-decoration: none; }
 .hero-visual::before { content: ''; position: absolute; z-index: 2; pointer-events: none; inset: 14px; border: 1px solid var(--linha); border-radius: 999px 999px 10px 10px; }
 .hero-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
 
-.light { background: var(--creme); color: var(--marrom); }
+.light { color: var(--marrom); } /* o fundo de cada seção clara (.areas, .onde) é definido nela mesma */
 .qicon { width: 46px; height: 46px; border-radius: 50%; background: var(--dourado); display: inline-flex; align-items: center; justify-content: center; }
 .qicon svg { width: 22px; height: 22px; fill: none; stroke: var(--marrom); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.qicon svg.fill { fill: var(--marrom); stroke: none; }
-.stub.light { border-top: 0; }
-.stub.light h2 { color: var(--marrom); }
-.stub.light p { color: rgba(70,37,6,.8); }
 .stub .stub-link { max-width: none; width: 100%; margin: 1.2rem 0 0; display: flex; justify-content: center; }
 #avaliacoes h2 { text-align: center; margin-bottom: 1.6rem; }
 /* Avaliações (widget Jotform): o comentário aberto no "Read more" vem sem fundo e a página aparecia por trás do texto.
