@@ -74,7 +74,7 @@ a { color: inherit; text-decoration: none; }
 .brand-name { font-family: var(--serif); font-weight: 400; font-size: 24px; letter-spacing: .06em; }
 .brand-sub { font-size: 10.5px; letter-spacing: .3em; margin-top: 5px; color: var(--dourado); font-weight: 400; }
 
-.nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
+.nav-links { display: flex; align-items: center; gap: clamp(1.1rem, 1.9vw, 2.25rem); list-style: none; }
 .nav-links a { white-space: nowrap; font-size: 14px; font-weight: 400; letter-spacing: .04em; padding: .4rem 0; position: relative; color: var(--creme); }
 .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background: var(--dourado); transition: width .25s; }
 .nav-links a:hover::after, .nav-links a.on::after { width: 100%; }
@@ -197,12 +197,13 @@ a { color: inherit; text-decoration: none; }
   .footer-bar-inner { justify-content: center; text-align: center; }
 }
 @media (max-width: 400px) { .footer-h { font-size: 20px; } } /* 2 colunas bem estreitas: título em uma linha */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .nav-links {
     position: fixed; top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); left: 0; right: 0;
     flex-direction: column; align-items: flex-start; gap: 0;
     background: var(--marrom); padding: .5rem var(--gutter) 1.5rem;
     border-bottom: 1px solid var(--linha);
+    max-height: calc(100svh - var(--nav-h) - env(safe-area-inset-top, 0px)); overflow-y: auto;
     transform: translateY(-12px); opacity: 0; visibility: hidden;
     transition: opacity .25s, transform .25s, visibility .25s;
   }
@@ -374,6 +375,72 @@ div.jf-google-reviews-read-more-modal--container p.jf-reviews-review-date { opac
   .onde-list li { padding: 1rem; }
 }
 @media (max-width: 520px) { .onde-list { grid-template-columns: minmax(0, 1fr); } }
+
+/* ══ EFEITOS SUAVES (portados do site do Destac's, na paleta da Golden) ══ */
+html { scroll-padding-top: 32px; } /* menu fixo: dá respiro ao rolar para âncoras */
+
+/* menu fixo: mantém o visual atual e reforça o fundo ao rolar (altura só encolhe no desktop, o menu mobile abre colado na barra) */
+.nav { position: fixed; transition: height .35s ease, background-color .35s ease, box-shadow .35s ease; }
+.nav.stuck { background: rgba(70,37,6,.88); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+@media (min-width: 1201px) { .nav.stuck { height: calc(64px + env(safe-area-inset-top, 0px)); } }
+
+/* hero: entrada em sequência + anel pulsando no botão principal */
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(221,195,88,.5); } 70%, 100% { box-shadow: 0 0 0 14px rgba(221,195,88,0); } }
+.hero-copy > * { animation: rise 1s cubic-bezier(.2,.7,.2,1) both; }
+.hero-copy > :nth-child(1) { animation-delay: .15s; }
+.hero-copy > :nth-child(2) { animation-delay: .3s; }
+.hero-copy > :nth-child(3) { animation-delay: .45s; }
+.hero-copy > :nth-child(4) { animation-delay: .6s; }
+.hero .btn-main { animation: ring 3.4s ease-out 2.6s infinite; }
+.hero .btn-main:hover { animation: none; }
+
+/* botões: sobem 2px com sombra suave */
+.btn, .nav-links a.nav-book { transition: background .25s, color .25s, border-color .25s, transform .25s, box-shadow .25s; }
+
+/* cards das áreas: véu dourado na foto e nome que sobe (o zoom da foto já existia) */
+.acard-ov::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(221,195,88,.28), transparent 60%); opacity: 0; transition: opacity .4s; pointer-events: none; }
+.acard-nome { transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+.acard-front:focus-visible .acard-ov::after { opacity: 1; }
+.acard-front:focus-visible .acard-nome { transform: translateY(-3px); }
+@media (hover: hover) {
+  .btn:hover, .nav-links a.nav-book:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(43,23,4,.28); }
+  .acard-front:hover .acard-ov::after { opacity: 1; }
+  .acard-front:hover .acard-nome { transform: translateY(-3px); }
+}
+
+/* rodapé: ícones sociais com zoom leve */
+.socials svg { transition: transform .3s cubic-bezier(.2,.7,.2,1), stroke .25s; }
+.socials a:hover svg { transform: scale(1.12); }
+
+/* revelar ao rolar (só ativo quando o JS roda; sem JS tudo aparece normal) */
+.js .rv:not(.in) { opacity: 0; transform: translateY(22px); }
+.js .rv.in { animation: rise .9s cubic-bezier(.2,.7,.2,1) backwards; animation-delay: var(--d, 0s); }
+/* foto da hero e mapa: revelados de cima para baixo (o corte fica na imagem/iframe; o observador vigia o contêiner, sem corte) */
+.js .cl img, .js .cl iframe { clip-path: inset(0 0 100% 0); transition: clip-path 1.3s cubic-bezier(.2,.7,.2,1); }
+.js .cl.in img, .js .cl.in iframe { clip-path: inset(0); }
+.js .hero-visual img { transition-delay: .35s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy > *, .hero .btn-main { animation: none !important; }
+  .js .rv, .js .rv:not(.in), .js .rv.in { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .js .cl img, .js .cl iframe { clip-path: none !important; transition: none !important; }
+  .btn:hover, .nav-links a.nav-book:hover, .acard-front:hover .acard-nome, .socials a:hover svg { transform: none !important; }
+  .nav { transition: none; }
+}
+/* slider da foto do hero: crossfade + zoom lento (com uma foto só, fica o zoom) e parallax leve no vídeo de fundo */
+.hero-visual .slides { position: absolute; inset: 0; }
+.hero-visual .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s ease; }
+.hero-visual .slide.on { opacity: 1; }
+.hero-visual .slide img { transform: scale(1.06); }
+.hero-visual .slide.on img { transform: scale(1); }
+.js .hero-visual .slide img { transition: clip-path 1.3s cubic-bezier(.2,.7,.2,1) .35s, transform 7s ease-out; }
+.hero-dots { position: absolute; left: 0; right: 0; bottom: 26px; z-index: 3; display: flex; justify-content: center; gap: .4rem; }
+.hero-dots button { width: 26px; height: 22px; background: none; border: 0; cursor: pointer; position: relative; }
+.hero-dots button::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: rgba(245,240,230,.45); transition: background .3s; }
+.hero-dots button.on::after { background: var(--dourado); }
+.hero-video { top: -12%; height: 124%; will-change: transform; } /* folga para o parallax não deixar borda */
+@media (prefers-reduced-motion: reduce) { .hero-visual .slide, .hero-visual .slide img { transition: none !important; transform: none !important; } }
 </style>
 </head>
 <body>
@@ -386,6 +453,8 @@ div.jf-google-reviews-read-more-modal--container p.jf-reviews-review-date { opac
     <li><a href="#inicio" class="on">Início</a></li>
     <li><a href="#areas">Áreas de atendimento</a></li>
     <li><a href="#avaliacoes">Avaliações</a></li>
+    <li><a href="#onde-estamos">Onde estamos</a></li>
+    <li><a href="#perguntas">Dúvidas</a></li>
     <li><a href="#contato">Contato</a></li>
     <li><a class="nav-book" href="https://wa.me/554892039597?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20a%20Golden." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a></li>
   </ul>
@@ -408,7 +477,12 @@ div.jf-google-reviews-read-more-modal--container p.jf-reviews-review-date { opac
       </div>
     </div>
     <!-- FOTO: trocar o miolo por <img src="..." alt="..."> com foto AUTORIZADA (equipe/ambiente). Sem foto adequada, fica o arco decorativo. -->
-    <div class="hero-visual"><img src="imagens/hero.png" width="1080" height="1350" alt="Proprietária da Golden Centro de Beleza" fetchpriority="high" decoding="async" onerror="this.style.display='none'"></div>
+    <div class="hero-visual">
+      <div class="slides">
+        <!-- SLIDER: para mais fotos, duplique o bloco abaixo (setas/pontinhos aparecem sozinhos com 2 ou mais) -->
+        <div class="slide on"><img src="imagens/hero.png" width="1080" height="1350" alt="Proprietária da Golden Centro de Beleza" fetchpriority="high" decoding="async" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
   </div>
 </section>
 <!-- PASSO 3: áreas de atendimento (só categorias confirmadas) -->
@@ -796,6 +870,83 @@ div.jf-google-reviews-read-more-modal--container p.jf-reviews-review-date { opac
     requestAnimationFrame(function () { fix(); busy = false; });
   }).observe(box, { childList: true, subtree: true, characterData: true });
   fix();
+})();
+// ── EFEITOS SUAVES (portados do site do Destac's): revelar ao rolar, menu que reage à rolagem e link da seção atual ──
+(function () {
+  var d = document, root = d.documentElement; root.classList.add('js');
+  function $$(q) { return [].slice.call(d.querySelectorAll(q)); }
+  var mobile = matchMedia('(max-width: 767px)').matches; // no mobile as áreas são um carrossel: revela o conjunto, não cada card
+
+  // marca (via JS, sem mexer no HTML) o que deve aparecer ao rolar
+  $$(['.areas-title', '#avaliacoes h2', '.onde-title', '.onde-card', '.faq-title', '.faq-item', '.footer-grid > *', '.footer-bar-inner',
+      mobile ? '.areas-carousel' : '.areas-grid > li'].join(',')).forEach(function (e) { e.classList.add('rv'); });
+  $$('.hero-visual, .onde-map').forEach(function (e) { e.classList.add('cl'); });
+
+  var alvos = $$('.rv, .cl');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) {
+      var k = 0; // escalonamento entre os itens que entram juntos
+      en.forEach(function (x) {
+        if (!x.isIntersecting) return;
+        x.target.style.setProperty('--d', (Math.min(k, 5) * 0.1).toFixed(1) + 's'); k++;
+        x.target.classList.add('in'); io.unobserve(x.target);
+      });
+    }, { threshold: .05 });
+    alvos.forEach(function (e) { io.observe(e); });
+  } else alvos.forEach(function (e) { e.classList.add('in'); });
+
+  // menu: fundo reforçado ao rolar e link da seção atual (seções sem link no menu não marcam nenhum)
+  var nav = d.querySelector('.nav');
+  var links = $$('.nav-links a[href^="#"]');
+  var secs = ['inicio', 'areas', 'avaliacoes', 'onde-estamos', 'perguntas', 'contato'].map(function (id) { return d.getElementById(id); }).filter(Boolean);
+  var tick = false;
+
+  function frame() {
+    tick = false; var y = window.scrollY || 0;
+    nav.classList.toggle('stuck', y > 60);
+    var atual = secs[0], ref = innerHeight * .35;
+    secs.forEach(function (s) { if (s.getBoundingClientRect().top <= ref) atual = s; });
+    var fim = innerHeight + y >= d.documentElement.scrollHeight - 4;
+    if (fim) { atual = secs[secs.length - 1]; alvos.forEach(function (e) { e.classList.add('in'); }); }
+    links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + atual.id); });
+  }
+  addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(frame); } }, { passive: true });
+  addEventListener('resize', frame); frame();
+})();
+// ── SLIDER DA FOTO DO HERO + PARALLAX DO VÍDEO ──
+(function () {
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var box = document.querySelector('.hero-visual'), hero = document.querySelector('.hero'), vid = document.querySelector('.hero-video');
+  var slides = box ? [].slice.call(box.querySelectorAll('.slide')) : [];
+  if (slides.length > 1) {
+    var cur = 0, timer = null, tabOn = true, inView = true, dots = [];
+    var wrap = document.createElement('div'); wrap.className = 'hero-dots'; wrap.setAttribute('role', 'group'); wrap.setAttribute('aria-label', 'Fotos');
+    slides.forEach(function (sl, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Foto ' + (i + 1));
+      b.addEventListener('click', function () { go(i); start(); });
+      wrap.appendChild(b); dots.push(b);
+    });
+    box.appendChild(wrap);
+    function go(n) {
+      cur = (n + slides.length) % slides.length;
+      slides.forEach(function (sl, i) { sl.classList.toggle('on', i === cur); });
+      dots.forEach(function (d, i) { d.classList.toggle('on', i === cur); });
+    }
+    function stop() { clearInterval(timer); timer = null; }
+    function start() { stop(); if (!reduce && tabOn && inView) timer = setInterval(function () { go(cur + 1); }, 5500); }
+    document.addEventListener('visibilitychange', function () { tabOn = !document.hidden; start(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { inView = en[0].isIntersecting; start(); }, { threshold: 0 }).observe(box);
+    var x0 = 0;
+    box.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', function (e) { var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { go(cur + (dx < 0 ? 1 : -1)); start(); } }, { passive: true });
+    go(0); start();
+  }
+  // parallax leve do vídeo (só desktop e sem "reduzir movimento"); o deslocamento nunca passa da folga do vídeo
+  if (vid && hero && !reduce && matchMedia('(min-width: 881px)').matches) {
+    var t = false;
+    function par() { t = false; var y = window.scrollY || 0; if (y < innerHeight * 1.2) vid.style.transform = 'translate3d(0,' + Math.min(y * .22, hero.offsetHeight * .12).toFixed(1) + 'px,0)'; }
+    addEventListener('scroll', function () { if (!t) { t = true; requestAnimationFrame(par); } }, { passive: true });
+  }
 })();
 </script>
 </body>
